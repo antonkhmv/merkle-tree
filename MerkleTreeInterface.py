@@ -34,7 +34,7 @@ class MerkleTreeInterface(ABC):
         pass
 
     @abstractmethod
-    def verify(self, position: int) -> bool:
+    def verify(self, position: int, item_hash, path: List) -> bool:
         pass
 
     @abstractmethod
@@ -42,7 +42,7 @@ class MerkleTreeInterface(ABC):
         pass
 
     @abstractmethod
-    def get_hash_of_item(self, position):
+    def get_hash_of_leaf(self, position):
         pass
 
     @abstractmethod

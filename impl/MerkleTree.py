@@ -1,4 +1,3 @@
-from typing import Tuple
 from MerkleTreeInterface import *
 
 
@@ -8,7 +7,6 @@ def verify_path(
         root,
         hash_func,
         concat_method):
-
     for h, direction in path:
 
         if direction:
@@ -136,7 +134,7 @@ class MerkleTree(MerkleTreeInterface):
         """
         return self.tree[1]
 
-    def get_hash_of_item(self, position):
+    def get_hash_of_leaf(self, position):
         """
         :param position: the position of the requested item in the leaves array
         :return: the leaf hash of an item requested
@@ -144,8 +142,30 @@ class MerkleTree(MerkleTreeInterface):
         position += self.m
         return self.tree[position]
 
-    def verify(self, position: int) -> bool:
-        return verify_path(self.get_hash_of_item(position), self.get_auth_path(position), self.get_digest(), self.hash, self.concat_method)
+    def verify(self, item_hash, position, path=None):
+        """
+        Verify that digest matches the source via an item and the path
+        :param item_hash:
+        :param position: the position of the leaf to verify
+        :param path: the list of hashes of parent and sibling nodes with their position with respect to the given item (left/right)
+        :return:
+        """
+
+        if path is None:
+            path = self.get_auth_path(position)
+
+        #item_hash = self.get_hash_of_leaf(position)
+
+        for h, direction in path:
+
+            if direction:
+                o1, o2 = h, item_hash
+            else:
+                o1, o2 = item_hash, h
+
+            item_hash = self.hash(self.concat_method(o1, o2))
+
+        return self.get_digest() == item_hash
 
     def get_auth_path(self, position: int) -> List:
         """
