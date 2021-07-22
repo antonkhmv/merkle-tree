@@ -154,8 +154,6 @@ class MerkleTree(MerkleTreeInterface):
         if path is None:
             path = self.get_auth_path(position)
 
-        #item_hash = self.get_hash_of_leaf(position)
-
         for h, direction in path:
 
             if direction:

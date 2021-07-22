@@ -12,7 +12,10 @@ def test_concat(x, y):
     return Hashing.reformat(x) + Hashing.reformat(y)
 
 
-def base_test(tree: MerkleTreeInterface):
+def base_test():
+
+    tree = MerkleTree(hash_algo='test', concat_method=test_concat)
+
     res = [""]
 
     def record(s):
@@ -29,7 +32,7 @@ def base_test(tree: MerkleTreeInterface):
     record(tree.get_digest())
     record(tree.get_hash_of_leaf(9))
 
-    record(type(tree)(message_list=list("Hello, world!"),
+    record(MerkleTree(message_list=list("Hello, world!"),
                       hash_algo='test', concat_method=test_concat))
     return res[0]
 
@@ -57,11 +60,15 @@ def verification_test():
     return errors == ''.join(map(lambda x: '1' if x[0] == x[1] else '0', zip(l1, l2)))
 
 
-class MerkleTreeTest(unittest.TestCase):
+class MerkleTreeBaseTest(unittest.TestCase):
 
     def test(self):
-        tree = MerkleTree(hash_algo='test', concat_method=test_concat)
-        self.assertEqual(base_test(tree), get_answer())
+        self.assertEqual(base_test(), get_answer())
+
+
+class MerkleTreeVerificationTest(unittest.TestCase):
+
+    def test(self):
         self.assertTrue(verification_test())
 
 
