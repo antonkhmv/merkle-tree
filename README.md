@@ -6,7 +6,7 @@
 
 ### Теория
 
-1.	Authenticated Data Structures Roberto Tamassia 2003 / (Режим доступа: свободный, дата обращения: 04.07.21) 
+1.	Authenticated Data Structures Roberto Tamassia 2003 https://cs.brown.edu/research/pubs/pdfs/2003/Tamassia-2003-ADS.pdf
 2.	Authenticated Data Structures, Generically Andrew Miller, Michael Hicks, Jonathan Katz, and Elaine Shi https://www.cs.umd.edu/~mwh/papers/gpads.pdf 
 3.	MerkleTree | Brilliant Math & Science https://brilliant.org/wiki/merkle-tree/
 
