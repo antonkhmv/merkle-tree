@@ -13,7 +13,7 @@
 ### Методы
 
 Основной функицонал находиться в фалйе impl/MerkleTree.py. 
-MerkleTreeInterface - абстрактный метод от которого наследуется MerkleTree.
+MerkleTreeInterface - абстрактный метод, от которого наследуется MerkleTree.
 Hashing.py - для доступа к функциям хэширования, встроенным в Python. 
 
 \_\_str__(self) - строковое предстовление
